@@ -1,3 +1,11 @@
+from huggingface_hub import hf_hub_download
+import os
+
+MODEL_PATH = hf_hub_download(
+    repo_id="gojoXgeto/car-price-model",
+    filename="best_model.pkl"
+)
+
 # Import Required Libraries
 
 import streamlit as st
@@ -7,10 +15,20 @@ import joblib
 
 # Load Trained Model
 
+from huggingface_hub import hf_hub_download
+import joblib
+import streamlit as st
+
 @st.cache_resource
 def load_model():
-    model = joblib.load("models/best_model.pkl")
+    model_path = hf_hub_download(
+        repo_id="gojoXgeto/car-price-model",
+        filename="best_model.pkl"
+    )
+
+    model = joblib.load(model_path)
     encoders = joblib.load("models/label_encoders.pkl")
+
     return model, encoders
 
 model, encoders = load_model()
