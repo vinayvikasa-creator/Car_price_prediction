@@ -27,7 +27,7 @@ def load_model():
     )
 
     model = joblib.load(model_path)
-    encoders = joblib.load("models/label_encoders.pkl")
+    encoders = joblib.load("label_encoders.pkl")
 
     return model, encoders
 
